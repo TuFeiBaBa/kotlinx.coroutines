@@ -100,6 +100,9 @@ private class TeeOutput(
 
     override fun write(b: Int) {
         bytesOut.write(b)
+        //回车 代码：CR ASCII码：/ r ，十六进制，0x0d，回车的作用只是移动光标至该行的起始位置；
+        //换行 代码：LF ASCII码：/ n ，十六进制，0x0a，换行至下一行行首起始位置；
+        //参考：http://blog.csdn.net/yirexiao/article/details/5135976
         if (b == 0x0d || b == 0x0a) { // new line
             flushLine()
             oldOut.write(b)
